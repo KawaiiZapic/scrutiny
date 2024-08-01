@@ -122,7 +122,7 @@ func (d *Detect) TransformDetectedDevices(detectedDeviceConns models.Scan) []mod
 
 	for _, scannedDevice := range detectedDeviceConns.Devices {
 
-		deviceFile := strings.ToLower(scannedDevice.Name)
+		deviceFile := scannedDevice.Name
 
 		detectedDevice := models.Device{
 			HostId:     d.Config.GetString("host.id"),
@@ -142,7 +142,7 @@ func (d *Detect) TransformDetectedDevices(detectedDeviceConns models.Scan) []mod
 	//now tha we've "grouped" all the devices, lets override any groups specified in the config file.
 
 	for _, overrideDevice := range d.Config.GetDeviceOverrides() {
-		overrideDeviceFile := strings.ToLower(overrideDevice.Device)
+		overrideDeviceFile := overrideDevice.Device
 
 		if overrideDevice.Ignore {
 			// this device file should be deleted if it exists
